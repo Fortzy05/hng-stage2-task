@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function ShoppingPage({ products, addToCart }) {
   return (
-    <div className="px-20 mb-20 w-full grid md:grid-cols-4 grid-cols-2 gap-5 bg-[#f4f4f479]">
+    <div className="md:px-20 px-3 mb-20 w-full grid md:grid-cols-4 grid-cols-2 container gap-7 bg-[#f4f4f479]">
       {products.map((product) => (
         <div
           key={product.id}

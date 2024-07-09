@@ -46,9 +46,15 @@ const Page = () => {
     <div className="w-full md:px-[5rem] bg-[#f4f4f479] overflow-hidden">
       <div className="flex justify-between md:px-0 px-[2rem] py-[2rem]">
         <Link href="/">
-          
-            <Image src="/logo.svg" alt="logo" width={100} height={40} />
-          
+          <Image
+            src="/logo.svg"
+            alt="logo"
+            className="w-[100px] h-10"
+            // layout="fill"
+            
+            width={100}
+            height={40}
+          />
         </Link>
         <div className="flex items-center gap-1">
           <Image src="/cart.svg" alt="cart" width={30} height={30} />
@@ -153,11 +159,9 @@ const Page = () => {
             <span>N{calculateTotal()}</span>
           </div>
           <Link href="/checkout">
-            
-              <button className="w-full my-[2rem] border-[#AC702F] bg-[#AC702F] text-white md:py-2 py-3 rounded-xl md:text-base text-xs">
-                Proceed to Checkout
-              </button>
-            
+            <button className="w-full my-[2rem] border-[#AC702F] bg-[#AC702F] text-white md:py-2 py-3 rounded-xl md:text-base text-xs">
+              Proceed to Checkout
+            </button>
           </Link>
         </div>
       </div>

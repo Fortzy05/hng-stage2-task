@@ -13,7 +13,7 @@ const Page = () => {
   return (
     <div className="w-full md:px-[5rem] py-0 px-0 md:py-[2rem] bg-[#f4f4f479]">
       <Link href="/">
-        <a>
+     
           <Image
             src="/logo.svg"
             alt="logo"
@@ -21,7 +21,7 @@ const Page = () => {
             height={50}
             className="md:px-0 md:py-0 px-[2rem] py-[1rem]"
           />
-        </a>
+        
       </Link>
       <div className="md:flex grid gap-10 w-full">
         <div className="md:py-[5rem] md:px-0 w-full grid md:gap-10">
