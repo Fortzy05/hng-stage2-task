@@ -1,7 +1,7 @@
-"use client";
-
+"use client"
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Page = () => {
   const [items, setItems] = useState([
@@ -9,14 +9,14 @@ const Page = () => {
     { id: 2, name: "Mondaine Classic 40mm", price: 160002, quantity: 1 },
   ]);
 
-  // Function to handle incrementing quantity
+  
   const handleIncrement = (index) => {
     const updatedItems = [...items];
     updatedItems[index].quantity++;
     setItems(updatedItems);
   };
 
-  // Function to handle decrementing quantity
+
   const handleDecrement = (index) => {
     const updatedItems = [...items];
     updatedItems[index].quantity = Math.max(
@@ -26,7 +26,7 @@ const Page = () => {
     setItems(updatedItems);
   };
 
-  // Function to calculate total price
+
   const calculateTotal = () => {
     let total = 0;
     items.forEach((item) => {
@@ -35,7 +35,7 @@ const Page = () => {
     return total;
   };
 
-  // Function to remove item from cart
+  
   const removeFromCart = (index) => {
     const updatedItems = [...items];
     updatedItems.splice(index, 1);
@@ -46,10 +46,12 @@ const Page = () => {
     <div className="w-full md:px-[5rem] bg-[#f4f4f479] overflow-hidden">
       <div className="flex justify-between md:px-0 px-[2rem] py-[2rem]">
         <Link href="/">
-          <img src="/logo.svg" alt="logo" />
+          
+            <Image src="/logo.svg" alt="logo" width={100} height={40} />
+          
         </Link>
         <div className="flex items-center gap-1">
-          <img src="/cart.svg" alt="cart" />
+          <Image src="/cart.svg" alt="cart" width={30} height={30} />
           <h1 className="text-[#334155]">Cart</h1>
         </div>
       </div>
@@ -65,10 +67,11 @@ const Page = () => {
               key={item.id}
               className="py-[2rem] flex gap-[2rem] border-b border-[#94A3B8]"
             >
-              {/* Replace with your image component */}
-              <img
+              <Image
                 src="/casio.svg"
                 alt="casio watch"
+                width={80}
+                height={80}
                 className="border border-[#AC702F] rounded-md bg-transparent"
               />
               <div className="flex flex-col gap-5">
@@ -150,9 +153,11 @@ const Page = () => {
             <span>N{calculateTotal()}</span>
           </div>
           <Link href="/checkout">
-            <button className="w-full my-[2rem] border-[#AC702F] bg-[#AC702F] text-white md:py-2 py-3 rounded-xl md:text-base text-xs">
-              Proceed to Checkout
-            </button>
+            
+              <button className="w-full my-[2rem] border-[#AC702F] bg-[#AC702F] text-white md:py-2 py-3 rounded-xl md:text-base text-xs">
+                Proceed to Checkout
+              </button>
+            
           </Link>
         </div>
       </div>

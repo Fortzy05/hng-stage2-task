@@ -6,7 +6,7 @@ function Footer() {
       <div className="bg-[#0F172A]">
         <div className="md:flex px-[.6rem] py-[2rem] gap-10 justify-center md:flex-row flex flex-col items-center border-b">
           <div className="flex gap-10">
-            <img src="/mail.svg" alt="" />
+            <img src="/mail.svg" alt="mail" />
             <h1 className="uppercase py-1">
               Sign up for 10% yout first order* - t&c's apply
               <span className="py-1 underline"> (privacy policy)</span>
@@ -20,7 +20,7 @@ function Footer() {
             />
             <img
               src="/check.svg"
-              alt=""
+              alt="check"
               className="absolute right-0 border py-[3px] px-2 rounded-r-2xl bg-[#0F172A]"
             />
           </div>
@@ -69,21 +69,21 @@ function Footer() {
       </div>
       <div className="md:flex md:flex-row flex flex-col gap-5 items-center justify-center  py-[1rem] px-[2rem]">
         <div className="flex gap-5 items-center">
-          <img src="/gpay.svg" alt="" />
-          <img src="/visa.svg" alt="" />
-          <img src="paypal.svg" alt="" />
-          <img src="/master.svg" alt="" />
+          <img src="/gpay.svg" alt="gpay" />
+          <img src="/visa.svg" alt="visa" />
+          <img src="paypal.svg" alt="paypal" />
+          <img src="/master.svg" alt="master card" />
         </div>
         <div className="flex gap-5 items-center">
-          <img src="/stripe.svg" alt="" />
-          <img src="/apple.svg" alt="" />
-          <img src="/amzon.svg" alt="" />
+          <img src="/stripe.svg" alt="stripe" />
+          <img src="/apple.svg" alt="apple pay" />
+          <img src="/amzon.svg" alt="amazon" />
         </div>
       </div>
 
       <div className="px-[2rem]">
         <div className="md:flex md:flex-row flex gap-8 md:gap-0 flex-col justify-center md:justify-between items-center px-[3rem] py-[2rem]">
-          <img src="/logo.svg" alt="" />
+          <img src="/logo.svg" alt="logo" />
 
           <ul className="text-[#0F172A] md:flex gap-5 md:flex-row flex flex-col items-center">
             <li>Terms of service</li>
@@ -92,10 +92,10 @@ function Footer() {
           </ul>
 
           <div className="flex gap-5">
-            <img src="/facebook.svg" alt="" />
-            <img src="/insta.svg" alt="" />
-            <img src="/x.svg" alt="" />
-            <img src="/linked.svg" alt="" />
+            <img src="/facebook.svg" alt="facebook" />
+            <img src="/insta.svg" alt="instagram" />
+            <img src="/x.svg" alt="twitter" />
+            <img src="/linked.svg" alt="linkedIn" />
           </div>
         </div>
         <div className="border-b w-full"></div>
