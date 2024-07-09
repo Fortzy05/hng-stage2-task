@@ -1,6 +1,7 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 function Header() {
   const [showBrandsDropdown, setShowBrandsDropdown] = useState(false);
@@ -19,7 +20,9 @@ function Header() {
       <section className="flex items-center h-[80px]">
         <div className="pl-2 pr-20 flex items-center font-bold">
           <Link href="/">
-            <img src="/logo.svg" alt="Logo" />
+            <a>
+              <Image src="/logo.svg" alt="Logo" width={100} height={40} />
+            </a>
           </Link>
         </div>
         <ul className="flex gap-[60px]">
@@ -28,7 +31,12 @@ function Header() {
             onClick={toggleBrandsDropdown}
           >
             <span className="hover:text-[#AC702F]">Brands</span>
-            <img src="/down_arrow.svg" alt="arrow down" />
+            <Image
+              src="/down_arrow.svg"
+              alt="arrow down"
+              width={12}
+              height={12}
+            />
             <span
               className={`absolute w-[900px] h-[480px] gap-[134px] flex top-full left-0 right-0 bg-white shadow-md rounded-md py-2 px-10 mt-1 z-10 ${
                 showBrandsDropdown ? "block" : "hidden"
@@ -38,7 +46,7 @@ function Header() {
                 <h3 className="font-semibold mb-2">Luxury Brands</h3>
                 <ul className="list-disc">
                   <li>Montblanc</li>
-                  <li>Baume & Mercier</li>
+                  <li>Baume &amp; Mercier</li>
                   <li>Oris</li>
                   <li>Rado</li>
                   <li>Fortis</li>
@@ -102,14 +110,18 @@ function Header() {
             onClick={toggleCategoriesDropdown}
           >
             <span className="hover:text-[#AC702F]">Categories</span>
-            <img src="/down_arrow.svg" alt="arrow down" />
+            <Image
+              src="/down_arrow.svg"
+              alt="arrow down"
+              width={12}
+              height={12}
+            />
             <span
               className={`absolute w-[300px] h-[100px] gap-[134px]  flex top-full left-0 right-0 bg-white shadow-md rounded-md py-2 px-10 mt-1 z-10 ${
                 showCategoriesDropdown ? "block" : "hidden"
               }`}
             >
               <div className="mb-3">
-                
                 <ul className="flex flex-col justify-center items-center space-y-2">
                   <li>Luxury Brands</li>
                   <li>Designer Watch Brands</li>
@@ -123,7 +135,13 @@ function Header() {
       </section>
 
       <div className="md:border md:w-[8rem] rounded-lg py-1 px-4 border-[#E2E8F0] bg-[#FFFFFF] flex items-center gap-3">
-        <img src="/search.svg" alt="search icon" className="md:w-5 w-8 " />
+        <Image
+          src="/search.svg"
+          alt="search icon"
+          width={20}
+          height={20}
+          className="md:w-5 w-8 "
+        />
         <input
           className="w-full outline-none md:block hidden "
           type="text"

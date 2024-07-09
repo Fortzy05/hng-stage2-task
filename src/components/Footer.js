@@ -1,4 +1,5 @@
-import React from 'react'
+import React from "react";
+import Image from "next/image";
 
 function Footer() {
   return (
@@ -6,9 +7,9 @@ function Footer() {
       <div className="bg-[#0F172A]">
         <div className="md:flex px-[.6rem] py-[2rem] gap-10 justify-center md:flex-row flex flex-col items-center border-b">
           <div className="flex gap-10">
-            <img src="/mail.svg" alt="mail" />
+            <Image src="/mail.svg" alt="mail" width={24} height={24} />
             <h1 className="uppercase py-1">
-              Sign up for 10% yout first order* - t&c's apply
+              Sign up for 10% your first order* - t&amp;c&apos;s apply
               <span className="py-1 underline"> (privacy policy)</span>
             </h1>
           </div>
@@ -18,9 +19,11 @@ function Footer() {
               placeholder="Email Address...."
               className=" input-placeholder py-1 rounded-2xl px-3"
             />
-            <img
+            <Image
               src="/check.svg"
               alt="check"
+              width={24}
+              height={24}
               className="absolute right-0 border py-[3px] px-2 rounded-r-2xl bg-[#0F172A]"
             />
           </div>
@@ -33,7 +36,7 @@ function Footer() {
               <li>About Us</li>
               <li>Store</li>
               <li>Appointments</li>
-              <li>Store Locator </li>
+              <li>Store Locator</li>
               <li>Map</li>
               <li>Site Map</li>
             </ul>
@@ -43,19 +46,19 @@ function Footer() {
             <ul>
               <li>Delivery</li>
               <li>Information</li>
-              <li>Returns &</li>
+              <li>Returns &amp;</li>
               <li>Exchanges</li>
               <li>Payment Options</li>
               <li>Privacy Policy</li>
               <li>Acceptable Use</li>
               <li>Policy</li>
               <li>Cookie Policy</li>
-              <li>Terms & Conditions</li>
+              <li>Terms &amp; Conditions</li>
               <li>Terms of Use</li>
             </ul>
           </div>
           <div>
-            <h1 className="font-semibold mb-2">OFFER & SERVICES</h1>
+            <h1 className="font-semibold mb-2">OFFER &amp; SERVICES</h1>
             <ul>
               <li>Brand</li>
               <li>Inspiration</li>
@@ -69,21 +72,21 @@ function Footer() {
       </div>
       <div className="md:flex md:flex-row flex flex-col gap-5 items-center justify-center  py-[1rem] px-[2rem]">
         <div className="flex gap-5 items-center">
-          <img src="/gpay.svg" alt="gpay" />
-          <img src="/visa.svg" alt="visa" />
-          <img src="paypal.svg" alt="paypal" />
-          <img src="/master.svg" alt="master card" />
+          <Image src="/gpay.svg" alt="gpay" width={24} height={24} />
+          <Image src="/visa.svg" alt="visa" width={24} height={24} />
+          <Image src="/paypal.svg" alt="paypal" width={24} height={24} />
+          <Image src="/master.svg" alt="master card" width={24} height={24} />
         </div>
         <div className="flex gap-5 items-center">
-          <img src="/stripe.svg" alt="stripe" />
-          <img src="/apple.svg" alt="apple pay" />
-          <img src="/amzon.svg" alt="amazon" />
+          <Image src="/stripe.svg" alt="stripe" width={24} height={24} />
+          <Image src="/apple.svg" alt="apple pay" width={24} height={24} />
+          <Image src="/amzon.svg" alt="amazon" width={24} height={24} />
         </div>
       </div>
 
       <div className="px-[2rem]">
         <div className="md:flex md:flex-row flex gap-8 md:gap-0 flex-col justify-center md:justify-between items-center px-[3rem] py-[2rem]">
-          <img src="/logo.svg" alt="logo" />
+          <Image src="/logo.svg" alt="logo" width={150} height={50} />
 
           <ul className="text-[#0F172A] md:flex gap-5 md:flex-row flex flex-col items-center">
             <li>Terms of service</li>
@@ -92,10 +95,10 @@ function Footer() {
           </ul>
 
           <div className="flex gap-5">
-            <img src="/facebook.svg" alt="facebook" />
-            <img src="/insta.svg" alt="instagram" />
-            <img src="/x.svg" alt="twitter" />
-            <img src="/linked.svg" alt="linkedIn" />
+            <Image src="/facebook.svg" alt="facebook" width={24} height={24} />
+            <Image src="/insta.svg" alt="instagram" width={24} height={24} />
+            <Image src="/x.svg" alt="twitter" width={24} height={24} />
+            <Image src="/linked.svg" alt="linkedIn" width={24} height={24} />
           </div>
         </div>
         <div className="border-b w-full"></div>
@@ -109,4 +112,4 @@ function Footer() {
   );
 }
 
-export default Footer
+export default Footer;
