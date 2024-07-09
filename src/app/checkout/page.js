@@ -8,39 +8,6 @@ const Page = () => {
     { id: 2, name: "Mondaine Classic 40mm", price: 160002, quantity: 1 },
   ]);
 
-  // // Function to handle incrementing quantity
-  // const handleIncrement = (index) => {
-  //   const updatedItems = [...items];
-  //   updatedItems[index].quantity++;
-  //   setItems(updatedItems);
-  // };
-
-  // // Function to handle decrementing quantity
-  // const handleDecrement = (index) => {
-  //   const updatedItems = [...items];
-  //   updatedItems[index].quantity = Math.max(
-  //     updatedItems[index].quantity - 1,
-  //     1
-  //   );
-  //   setItems(updatedItems);
-  // };
-
-  // // Function to calculate total price
-  // const calculateTotal = () => {
-  //   let total = 0;
-  //   items.forEach((item) => {
-  //     total += item.price * item.quantity;
-  //   });
-  //   return total;
-  // };
-
-  
-  // const removeFromCart = (index) => {
-  //   const updatedItems = [...items];
-  //   updatedItems.splice(index, 1);
-  //   setItems(updatedItems);
-  // };
-
   return (
     <div className="w-full md:px-[5rem] py-0 px-0 md:py-[2rem] bg-[#f4f4f479]">
       <Link href="/">
@@ -221,8 +188,8 @@ const Page = () => {
               />
             </div>
             <h1 className="text-[#0F172A] mb-[2rem] md:text-base text-xs">
-              By Clicking "Confirm Payment" I agree to the companies term of
-              services.
+              By Clicking &quot;Confirm Payment&quot; I agree to the companies
+              term of services.
             </h1>
             <div className="mt-[4rem] flex justify-between text-[#0F172A] md:text-base text-xs">
               <h2>Subtotal</h2>
