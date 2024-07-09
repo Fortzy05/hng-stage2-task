@@ -5,15 +5,13 @@ const Page = () => {
   return (
     <div className="w-full md:px-[5rem] py-0 px-0 md:py-[2rem] bg-[#f4f4f479]">
       <Link href="/">
-        
-          <Image
-            src="/logo.svg"
-            alt="logo"
-            width={150}
-            height={50}
-            className="md:px-0 md:py-0 px-[2rem] py-[1rem]"
-          />
-        
+        <Image
+          src="/logo.svg"
+          alt="logo"
+          width={150}
+          height={50}
+          className="md:px-0 md:py-0 px-[2rem] py-[1rem]"
+        />
       </Link>
       <div className="md:flex grid gap-10 w-full">
         <div className="md:py-[5rem] md:px-0 w-full grid md:gap-10">
@@ -103,7 +101,7 @@ const Page = () => {
                   alt="polygon"
                   width={15}
                   height={15}
-                  className=""
+                  
                 />
               </div>
             </div>
@@ -120,7 +118,7 @@ const Page = () => {
                 <span className="text-[#0F172A]">UPS</span>
               </div>
               <div>
-                <Image src="/polygon.svg" alt="" width={15} height={15} />
+                <Image src="/polygon.svg" alt="polygon" width={15} height={15} />
               </div>
             </div>
             <div className="px-10 pb-7 flex flex-col gap-5">
@@ -152,12 +150,12 @@ const Page = () => {
               <div className="flex right-0 pt-5 top-0 absolute">
                 <Image
                   src="/visa.svg"
-                  alt=""
+                  alt="visa"
                   className="md:w-11 w-10"
                   width={44}
                   height={28}
                 />
-                <Image src="/polygon.svg" alt="" width={15} height={15} />
+                <Image src="/polygon.svg" alt="polygon" width={15} height={15} />
               </div>
             </div>
             <div className="pb-[2rem] flex gap-5">
