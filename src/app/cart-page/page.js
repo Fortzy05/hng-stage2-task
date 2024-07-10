@@ -46,14 +46,14 @@ const Page = () => {
     <div className="w-full md:px-[5rem] bg-[#f4f4f479] overflow-hidden">
       <div className="flex justify-between md:px-0 px-[2rem] py-[2rem]">
         <Link href="/">
-          <Image
+          <img
             src="/logo.svg"
             alt="logo"
-            className="w-[100px] h-10"
-            // layout="fill"
+            // className="w-[100px] h-10"
+            // // layout="fill"
             
-            width={100}
-            height={40}
+            // width={100}
+            // height={40}
           />
         </Link>
         <div className="flex items-center gap-1">

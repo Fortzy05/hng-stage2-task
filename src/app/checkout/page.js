@@ -12,17 +12,22 @@ const Page = () => {
 
   return (
     <div className="w-full md:px-[5rem] py-0 px-0 md:py-[2rem] bg-[#f4f4f479]">
-      <Link href="/">
-     
-          <Image
+      <div className="flex justify-between md:px-0 px-[2rem] py-[2rem]">
+        <Link href="/">
+          <img
             src="/logo.svg"
             alt="logo"
-            width={150}
-            height={50}
-            className="md:px-0 md:py-0 px-[2rem] py-[1rem]"
+            // width={150}
+            // height={50}
+            // className="md:px-0 md:py-0 px-[2rem] py-[1rem]"
           />
-        
-      </Link>
+        </Link>
+        <div className="flex items-center gap-1">
+          <Image src="/cart.svg" alt="cart" width={30} height={30} />
+          <h1 className="text-[#334155]">Cart</h1>
+        </div>
+      </div>
+
       <div className="md:flex grid gap-10 w-full">
         <div className="md:py-[5rem] md:px-0 w-full grid md:gap-10">
           <div className="w-full justify-center md:border border-none px-[2rem] border-white bg-white md:rounded-lg md:block hidden">
