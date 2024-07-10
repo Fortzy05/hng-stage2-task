@@ -30,8 +30,8 @@ function ShoppingMenu() {
         Explore beautiful Inspiration from our Watch Collection
       </h1>
 
-      <div className="About md:w-[80rem] w-[20rem] md:justify-center md:gap-[5.5rem] gap-[1.5rem]">
-        <ul className="flex gap-16 font-normal text-[16px] items-center justify-center">
+      <div className="flex overflow-x-auto items-center text-nowrap  md:w-[80rem] w-[20rem] md:justify-center md:gap-[5.5rem] gap-[1.5rem]">
+        <ul className="flex gap-1 font-normal text-[16px] items-center justify-center">
           <li
             className={`py-2 rounded-[6px] px-4 ${
               activeIndex === 0 ? "border border-[#0F172A]" : ""

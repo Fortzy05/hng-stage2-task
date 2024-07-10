@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-
+import ResponsiveImage from "./ResponsiveImage";
 function ShoppingCartSection({ cart }) {
   return (
     <div className=" bg-[#fdfdfd] w-full overflow-hidden">
@@ -18,17 +18,23 @@ function ShoppingCartSection({ cart }) {
       </Link>
 
       <div className="relative text-white py-[2rem] flex flex-col justify-center items-center gap-6">
-        <div className="absolute top-8 bg-[#0F172A]/45 h-[376px] w-full" />
-        <img
+        <div className="absolute bg-[#2c2b2b]/30 top-8 md:bg-[ #2c2b2b]/45 h-[619px] md:h-[376px] w-full" />
+        {/* <img
           className="w-full h-[376px] object-cover"
           src="/homepage.png"
           alt=""
+        /> */}
+        <ResponsiveImage
+          className="w-full md:h-[376px] h-[619px] object-cover"
+          mobileSrc="/mobile.svg"
+          desktopSrc="/homepage.png"
+          alt="Homepage Banner"
         />
         <div className=" text-white py-8  flex flex-col justify-center items-center gap-6">
-          <h1 className="absolute top-[60px] md:top-24 px-8 tracking-wider text-[40px] md:text-[64px] text-center font-bold">
+          <h1 className="absolute top-[50px] md:top-24 px-8 text-[64px] leading-[77.45px] text-center font-bold">
             How To Wear A Watch <br /> The Right Way
           </h1>
-          <button className="absolute top-[80px] md:top-20 px-4 py-2 mt-[250px] rounded-[23.86px] text-[19.09px] bg-[#AC702F]">
+          <button className="absolute top-[300px] md:top-20 px-[14px] py-[9px] mt-[250px] rounded-[23.86px] text-[19.09px] bg-[#AC702F]">
             Read more
           </button>
         </div>
