@@ -1,16 +1,19 @@
-"use client"
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useCart } from '../context/CartContext';
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { useCart } from "../context/CartContext";
+import DynamicTime from "@/components/DynamicTime";
 
 const CartPage = () => {
   const {
     cartItems,
-    incrementItem,
-    decrementItem,
     removeFromCart,
+    incrementQuantity,
+    decrementQuantity,
     calculateTotal,
+    clearCart,
   } = useCart();
 
   return (
@@ -36,32 +39,36 @@ const CartPage = () => {
               key={item.id}
               className="py-[2rem] flex gap-[2rem] border-b border-[#94A3B8]"
             >
-              {/* <Image
-                src={item.photos[0].url}
+              <Image
+                src={
+                  item.photos?.[0]?.url
+                    ? `https://app.timbu.cloud/${item.photos[0].url}`
+                    : "/rolex.svg"
+                }
                 alt={item.name}
                 width={80}
                 height={80}
                 className="border border-[#AC702F] rounded-md bg-transparent"
-              /> */}
+              />
               <div className="flex flex-col gap-5">
                 <h1 className="md:text-2xl text-sm font-semibold">
                   {item.name}
                 </h1>
                 <h2 className="md:text-2xl text-sm font-semibold">
-                  N{item.price}
+                  N{item.current_price?.[0]?.NGN?.[0] || "Price not available"}
                 </h2>
                 <div className="md:text-base text-xs">
                   <button className="border border-[#AC702F] px-1 rounded-2xl flex items-center">
                     <span
                       className="mr-2 cursor-pointer"
-                      onClick={() => decrementItem(item.id)}
+                      onClick={() => decrementQuantity(item.id)}
                     >
                       -
                     </span>
                     {item.quantity}
                     <span
                       className="ml-1 cursor-pointer"
-                      onClick={() => incrementItem(item.id)}
+                      onClick={() => incrementQuantity(item.id)}
                     >
                       +
                     </span>
@@ -72,7 +79,7 @@ const CartPage = () => {
                     In Stock
                   </p>
                   <button
-                    className="text-red-500 md:text-base text-xs "
+                    className="text-red-500 md:text-base text-xs"
                     onClick={() => removeFromCart(item.id)}
                   >
                     Remove
@@ -81,6 +88,13 @@ const CartPage = () => {
               </div>
             </div>
           ))}
+
+          <button
+            className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
+            onClick={clearCart}
+          >
+            Clear Cart
+          </button>
         </div>
 
         <div className="md:border border-none md:w-1/3 px-[2rem] border-white bg-white md:rounded-lg w-full">
@@ -89,7 +103,7 @@ const CartPage = () => {
               Delivery
             </h1>
             <p className="text-[#0F172A] md:text-base text-xs mt-2">
-              July 13, 2024, 3:00pm - 5:00pm
+            <DynamicTime />
             </p>
           </div>
           <div className="flex gap-5 items-center">
@@ -104,6 +118,7 @@ const CartPage = () => {
               Apply
             </button>
           </div>
+
           <div className="mt-[4rem] flex justify-between text-[#0F172A] md:text-base text-xs">
             <h2>Subtotal</h2>
             <span>N{calculateTotal()}</span>
@@ -132,4 +147,3 @@ const CartPage = () => {
 };
 
 export default CartPage;
-          

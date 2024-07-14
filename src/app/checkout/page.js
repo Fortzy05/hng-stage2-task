@@ -4,9 +4,10 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "../context/CartContext";
+import DynamicTime from "../components/DynamicTime";
 
 const CheckoutPage = () => {
-  const { cartItems, incrementItem, decrementItem, calculateTotal } = useCart();
+  const { cartItems, calculateTotal } = useCart();
 
   return (
     <div className="w-full md:px-[5rem] py-0 px-0 md:py-[2rem] bg-[#f4f4f479]">
@@ -22,7 +23,7 @@ const CheckoutPage = () => {
 
       <div className="md:flex grid gap-10 w-full">
         <div className="md:py-[5rem] md:px-0 w-full grid md:gap-10">
-          <div className="w-full justify-center md:border border-none px-[2rem] border-white bg-white md:rounded-lg">
+          <div className="w-full justify-center md:border border-none px-[2rem] border-white bg-white md:rounded-lg md:block hidden">
             <h1 className="border-b w-full py-[2rem] border-[#94A3B8] md:text-2xl text-base font-semibold">
               Item Summary
             </h1>
@@ -31,38 +32,35 @@ const CheckoutPage = () => {
                 key={item.id}
                 className="py-[2rem] flex gap-[2rem] border-b border-[#94A3B8]"
               >
-                {/* <Image
-                  src={item.photos[0].url}
+                <Image
+                  src={
+                    item.photos?.[0]?.url
+                      ? `/${item.photos[0].url}`
+                      : "/placeholder.jpg"
+                  }
                   alt={item.name}
                   width={100}
                   height={100}
                   className="border border-[#AC702F] rounded-md bg-transparent"
-                /> */}
+                />
                 <div className="flex flex-col gap-5">
                   <h1 className="md:text-2xl text-sm font-semibold">
                     {item.name}
                   </h1>
                   <h2 className="md:text-2xl text-sm font-semibold">
-                    N{item.price}
+                    N
+                    {item.current_price?.[0]?.NGN?.[0] || "Price not available"}
                   </h2>
                   <div className="md:text-base text-xs">
-                    <button className="border border-[#AC702F] px-1 rounded-2xl flex items-center">
-                      <span
-                        className="mr-2 cursor-pointer"
-                        onClick={() => decrementItem(item.id)}
-                      >
-                        -
-                      </span>
+                    <button className="border border-[#AC702F] px-1 rounded-2xl">
+                      <span className="mr-2">-</span>
                       {item.quantity}
-                      <span
-                        className="ml-1 cursor-pointer"
-                        onClick={() => incrementItem(item.id)}
-                      >
-                        +
-                      </span>
+                      <span className="ml-1">+</span>
                     </button>
                   </div>
-                  <p className="text-[#12DF00] d:text-base text-xs">In Stock</p>
+                  <p className="text-[#12DF00] md:text-base text-xs">
+                    In Stock
+                  </p>
                 </div>
               </div>
             ))}
@@ -129,9 +127,7 @@ const CheckoutPage = () => {
               </div>
             </div>
             <div className="px-10 pb-7 flex flex-col gap-5">
-              <p className="md:text-base text-xs">
-                July 13, 2024, 3:00pm - 5:00pm
-              </p>
+              <DynamicTime />
               <span className="text-[#0F172A] md:text-base text-xs font-semibold">
                 Free
               </span>
@@ -183,8 +179,8 @@ const CheckoutPage = () => {
               />
             </div>
             <h1 className="text-[#0F172A] mb-[2rem] md:text-base text-xs">
-              By Clicking "Confirm Payment" I agree to the company's terms of
-              service.
+              By Clicking &quot;Confirm Payment&quot; I agree to the companies
+              term of services.
             </h1>
             <div className="mt-[4rem] flex justify-between text-[#0F172A] md:text-base text-xs">
               <h2>Subtotal</h2>

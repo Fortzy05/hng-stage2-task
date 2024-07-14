@@ -1,16 +1,18 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 function ShoppingCard({ product, addToCart }) {
-  const productPrice = product.current_price?.[0]?.NGN?.[0] || 'Price not available';
+  const productPrice =
+    product.current_price?.[0]?.NGN?.[0] || "Price not available";
   const productImage = product.photos?.[0]?.url
     ? `https://api.timbu.cloud/images/${product.photos[0]?.url}`
-    : "/rolex.svg"; 
+    : "/rolex.svg";
 
   return (
     <div className="md:w-[292px] md:h-[563px] border border-[#AC702F] py-2 px-4 rounded-lg flex flex-col justify-between">
-      
+      <Link href={`/product/${product.id}`}>
+        
         <Image
           src={productImage}
           alt={product.name}
@@ -18,8 +20,7 @@ function ShoppingCard({ product, addToCart }) {
           height={150}
           className="w-full bg-white"
         />
-      
-
+      </Link>
       <div>
         <h1 className="md:text-lg text-sm font-semibold mt-4">
           {product.name}
@@ -34,12 +35,12 @@ function ShoppingCard({ product, addToCart }) {
         </p>
 
         <h4 className="md:text-2xl text-xl font-semibold text-[#0F172A]">
-          {productPrice ? `N${productPrice}` : 'Price not available'}
+          {productPrice ? `N${productPrice}` : "Price not available"}
         </h4>
 
         <div className="flex items-center gap-2">
           <Image
-            src={product.rating || '/rating.svg'}
+            src={product.rating || "/rating.svg"}
             alt="rating"
             width={112}
             height={20}
@@ -51,8 +52,10 @@ function ShoppingCard({ product, addToCart }) {
         </div>
 
         <h5 className="md:text-sm text-xs text-gray-500 mt-5">
-          <span className="font-bold text-[#AC702F]">{product.available_quantity}</span> left
-          in stock
+          <span className="font-bold text-[#AC702F]">
+            {product.available_quantity}
+          </span>{" "}
+          left in stock
         </h5>
       </div>
 
