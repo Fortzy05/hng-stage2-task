@@ -103,7 +103,7 @@ const CartPage = () => {
               Delivery
             </h1>
             <p className="text-[#0F172A] md:text-base text-xs mt-2">
-            <DynamicTime />
+              <DynamicTime />
             </p>
           </div>
           <div className="flex gap-5 items-center">
