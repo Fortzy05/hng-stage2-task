@@ -1,60 +1,23 @@
 "use client"
-import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useCart } from '../context/CartContext';
 
-const Page = () => {
-  const [items, setItems] = useState([
-    { id: 1, name: "Casio CA-500WE-1AEF", price: 160002, quantity: 1 },
-    { id: 2, name: "Mondaine Classic 40mm", price: 160002, quantity: 1 },
-  ]);
-
-  
-  const handleIncrement = (index) => {
-    const updatedItems = [...items];
-    updatedItems[index].quantity++;
-    setItems(updatedItems);
-  };
-
-
-  const handleDecrement = (index) => {
-    const updatedItems = [...items];
-    updatedItems[index].quantity = Math.max(
-      updatedItems[index].quantity - 1,
-      1
-    );
-    setItems(updatedItems);
-  };
-
-
-  const calculateTotal = () => {
-    let total = 0;
-    items.forEach((item) => {
-      total += item.price * item.quantity;
-    });
-    return total;
-  };
-
-  
-  const removeFromCart = (index) => {
-    const updatedItems = [...items];
-    updatedItems.splice(index, 1);
-    setItems(updatedItems);
-  };
+const CartPage = () => {
+  const {
+    cartItems,
+    incrementItem,
+    decrementItem,
+    removeFromCart,
+    calculateTotal,
+  } = useCart();
 
   return (
     <div className="w-full md:px-[5rem] bg-[#f4f4f479] overflow-hidden">
       <div className="flex justify-between md:px-0 px-[2rem] py-[2rem]">
         <Link href="/">
-          <img
-            src="/logo.svg"
-            alt="logo"
-            // className="w-[100px] h-10"
-            // // layout="fill"
-            
-            // width={100}
-            // height={40}
-          />
+          <img src="/logo.svg" alt="logo" />
         </Link>
         <div className="flex items-center gap-1">
           <Image src="/cart.svg" alt="cart" width={30} height={30} />
@@ -68,18 +31,18 @@ const Page = () => {
             Item Summary
           </h1>
 
-          {items.map((item, index) => (
+          {cartItems.map((item, index) => (
             <div
               key={item.id}
               className="py-[2rem] flex gap-[2rem] border-b border-[#94A3B8]"
             >
-              <Image
-                src="/casio.svg"
-                alt="casio watch"
+              {/* <Image
+                src={item.photos[0].url}
+                alt={item.name}
                 width={80}
                 height={80}
                 className="border border-[#AC702F] rounded-md bg-transparent"
-              />
+              /> */}
               <div className="flex flex-col gap-5">
                 <h1 className="md:text-2xl text-sm font-semibold">
                   {item.name}
@@ -91,14 +54,14 @@ const Page = () => {
                   <button className="border border-[#AC702F] px-1 rounded-2xl flex items-center">
                     <span
                       className="mr-2 cursor-pointer"
-                      onClick={() => handleDecrement(index)}
+                      onClick={() => decrementItem(item.id)}
                     >
                       -
                     </span>
                     {item.quantity}
                     <span
                       className="ml-1 cursor-pointer"
-                      onClick={() => handleIncrement(index)}
+                      onClick={() => incrementItem(item.id)}
                     >
                       +
                     </span>
@@ -110,7 +73,7 @@ const Page = () => {
                   </p>
                   <button
                     className="text-red-500 md:text-base text-xs "
-                    onClick={() => removeFromCart(index)}
+                    onClick={() => removeFromCart(item.id)}
                   >
                     Remove
                   </button>
@@ -141,7 +104,6 @@ const Page = () => {
               Apply
             </button>
           </div>
-
           <div className="mt-[4rem] flex justify-between text-[#0F172A] md:text-base text-xs">
             <h2>Subtotal</h2>
             <span>N{calculateTotal()}</span>
@@ -169,4 +131,5 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default CartPage;
+          

@@ -1,26 +1,18 @@
-"use client"
+"use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useCart } from "../context/CartContext";
 
-const Page = () => {
-  const [items, setItems] = useState([
-    { id: 1, name: "Casio CA-500WE-1AEF", price: 160002, quantity: 1 },
-    { id: 2, name: "Mondaine Classic 40mm", price: 160002, quantity: 1 },
-  ]);
+const CheckoutPage = () => {
+  const { cartItems, incrementItem, decrementItem, calculateTotal } = useCart();
 
   return (
     <div className="w-full md:px-[5rem] py-0 px-0 md:py-[2rem] bg-[#f4f4f479]">
       <div className="flex justify-between md:px-0 px-[2rem] py-[2rem]">
         <Link href="/">
-          <img
-            src="/logo.svg"
-            alt="logo"
-            // width={150}
-            // height={50}
-            // className="md:px-0 md:py-0 px-[2rem] py-[1rem]"
-          />
+          <img src="/logo.svg" alt="logo" />
         </Link>
         <div className="flex items-center gap-1">
           <Image src="/cart.svg" alt="cart" width={30} height={30} />
@@ -30,54 +22,50 @@ const Page = () => {
 
       <div className="md:flex grid gap-10 w-full">
         <div className="md:py-[5rem] md:px-0 w-full grid md:gap-10">
-          <div className="w-full justify-center md:border border-none px-[2rem] border-white bg-white md:rounded-lg md:block hidden">
+          <div className="w-full justify-center md:border border-none px-[2rem] border-white bg-white md:rounded-lg">
             <h1 className="border-b w-full py-[2rem] border-[#94A3B8] md:text-2xl text-base font-semibold">
               Item Summary
             </h1>
-            <div className="py-[2rem] flex gap-[2rem] border-b border-[#94A3B8]">
-              <Image
-                src="/cartcasio.svg"
-                alt="casio watch"
-                width={100}
-                height={100}
-                className="border border-[#AC702F] rounded-md bg-transparent"
-              />
-              <div className="flex flex-col gap-5">
-                <h1 className="md:text-2xl text-sm font-semibold">
-                  Casio CA-500WE-1AEF
-                </h1>
-                <h2 className="md:text-2xl text-sm font-semibold">N160,002</h2>
-                <div className="md:text-base text-xs">
-                  <button className="border border-[#AC702F] px-1 rounded-2xl">
-                    <span className="mr-2">-</span>1
-                    <span className="ml-1">+</span>
-                  </button>
+            {cartItems.map((item) => (
+              <div
+                key={item.id}
+                className="py-[2rem] flex gap-[2rem] border-b border-[#94A3B8]"
+              >
+                {/* <Image
+                  src={item.photos[0].url}
+                  alt={item.name}
+                  width={100}
+                  height={100}
+                  className="border border-[#AC702F] rounded-md bg-transparent"
+                /> */}
+                <div className="flex flex-col gap-5">
+                  <h1 className="md:text-2xl text-sm font-semibold">
+                    {item.name}
+                  </h1>
+                  <h2 className="md:text-2xl text-sm font-semibold">
+                    N{item.price}
+                  </h2>
+                  <div className="md:text-base text-xs">
+                    <button className="border border-[#AC702F] px-1 rounded-2xl flex items-center">
+                      <span
+                        className="mr-2 cursor-pointer"
+                        onClick={() => decrementItem(item.id)}
+                      >
+                        -
+                      </span>
+                      {item.quantity}
+                      <span
+                        className="ml-1 cursor-pointer"
+                        onClick={() => incrementItem(item.id)}
+                      >
+                        +
+                      </span>
+                    </button>
+                  </div>
+                  <p className="text-[#12DF00] d:text-base text-xs">In Stock</p>
                 </div>
-                <p className="text-[#12DF00] d:text-base text-xs">In Stock</p>
               </div>
-            </div>
-            <div className="py-[2rem] flex gap-[2rem]">
-              <Image
-                src="/cartmontaine.svg"
-                alt="montaine watch"
-                width={100}
-                height={100}
-                className="border px-2 border-[#AC702F] rounded-md bg-transparent"
-              />
-              <div className="flex flex-col gap-5">
-                <h1 className="md:text-2xl text-sm font-semibold">
-                  Mondaine Classic 40mm
-                </h1>
-                <h2 className="md:text-2xl text-sm font-semibold">N160,002</h2>
-                <div className="md:text-base text-xs">
-                  <button className="border border-[#AC702F] px-1 rounded-2xl">
-                    <span className="mr-2">-</span>1
-                    <span className="ml-1">+</span>
-                  </button>
-                </div>
-                <p className="text-[#12DF00] d:text-base text-xs">In Stock</p>
-              </div>
-            </div>
+            ))}
           </div>
           <div className="w-full justify-center md:border border-none px-[2rem] border-white bg-white md:rounded-lg">
             <h1 className="w-full py-[2rem] md:text-2xl text-base font-semibold">
@@ -195,12 +183,12 @@ const Page = () => {
               />
             </div>
             <h1 className="text-[#0F172A] mb-[2rem] md:text-base text-xs">
-              By Clicking &quot;Confirm Payment&quot; I agree to the companies
-              term of services.
+              By Clicking "Confirm Payment" I agree to the company's terms of
+              service.
             </h1>
             <div className="mt-[4rem] flex justify-between text-[#0F172A] md:text-base text-xs">
               <h2>Subtotal</h2>
-              <span>N354,544</span>
+              <span>N{calculateTotal()}</span>
             </div>
             <div className="mt-[2rem] flex justify-between text-[#0F172A] md:text-base text-xs">
               <h2>Discount</h2>
@@ -212,7 +200,7 @@ const Page = () => {
             </div>
             <div className="mt-[2rem] flex justify-between text-[#0F172A] md:text-base text-xs">
               <h2>Total</h2>
-              <span>N354,544</span>
+              <span>N{calculateTotal()}</span>
             </div>
             <button className="w-full my-[2rem] border-[#AC702F] bg-[#AC702F] text-white md:py-2 py-3 rounded-xl md:text-base text-xs">
               Confirm Payment
@@ -224,4 +212,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default CheckoutPage;

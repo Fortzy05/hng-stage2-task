@@ -1,37 +1,38 @@
-"use client"
+"use client";
 
-import React, {useState} from 'react'
+import React, { useState } from "react";
 
 function ShoppingMenu() {
-    const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-    const handleItemClick = (index) => {
-      setActiveIndex(index);
-    };
+  const handleItemClick = (index) => {
+    setActiveIndex(index);
+  };
+
   return (
     <div className="w-full flex flex-col gap-5 justify-center items-center md:px-[2rem] px-[1rem] py-[2rem] bg-[#f4f4f479] overflow-hidden">
-      {/* <div className="flex justify-center items-center text-[16px] gap-5">
-        <div className="flex items-center gap-1">
-          <h1>Brands</h1>
-          <img src="/down_arrow.svg" alt="arrow" />
-        </div>
+      <div className="flex justify-center items-center text-[16px] gap-5">
+                <div className="flex items-center gap-1">
+                    <h1>Brands</h1>
+                    <img src="/down_arrow.svg" alt="arrow" />
+                </div>
 
-        <h2 className="border border-[#AC702F] bg-[#AC702F] text-white py-1 px-3 rounded-full">
-          Inspiration
-        </h2>
+                <h2 className="border border-[#AC702F] bg-[#AC702F] text-white py-1 px-3 rounded-full">
+                    Inspiration
+                </h2>
 
-        <div className="flex items-center gap-1">
-          <h3>Categories</h3>
-          <img src="/down_arrow.svg" alt="arrow" />
-        </div>
-      </div> */}
+                <div className="flex items-center gap-1">
+                    <h3>Categories</h3>
+                    <img src="/down_arrow.svg" alt="arrow" />
+                </div>
+            </div>
 
-      <h1 className="text-[#0F172A] text-[32px] font-semibold text-center">
+      <h1 className="text-[#0F172A] text-[32px] font-bold text-center mb-1">
         Explore beautiful Inspiration from our Watch Collection
       </h1>
 
-      <div className="flex overflow-x-auto items-center text-nowrap  md:w-[80rem] w-[20rem] md:justify-center md:gap-[5.5rem] gap-[1.5rem]">
-        <ul className="flex gap-1 font-normal text-[16px] items-center justify-center">
+      <div className="flex  overflow-x-auto items-center text-nowrap md:w-[80rem] w-[20rem] md:justify-center md:gap-[5.5rem] gap-[1.5rem]">
+        <ul className="flex md:gap-16 gap-1 space-y-3 font-normal text-[16px] items-center justify-center">
           <li
             className={`py-2 rounded-[6px] px-4 ${
               activeIndex === 0 ? "border border-[#0F172A]" : ""
@@ -102,4 +103,4 @@ function ShoppingMenu() {
   );
 }
 
-export default ShoppingMenu
+export default ShoppingMenu;

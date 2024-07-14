@@ -25,7 +25,6 @@ const Header = () => {
     setShowCategoriesDropdown(!showCategoriesDropdown);
   };
 
-
   const toggleDropdown = (type) => {
     setDropdownState((prevState) => ({
       ...prevState,

@@ -72,15 +72,15 @@ function Footer() {
       </div>
       <div className="md:flex md:flex-row flex flex-col gap-5 items-center justify-center  py-[1rem] px-[2rem]">
         <div className="flex gap-5 items-center">
-          <Image src="/gpay.svg" alt="gpay" width={24} height={24} />
-          <Image src="/visa.svg" alt="visa" width={24} height={24} />
-          <Image src="/paypal.svg" alt="paypal" width={24} height={24} />
-          <Image src="/master.svg" alt="master card" width={24} height={24} />
+          <Image src="/gpay.svg" alt="gpay" width={56} height={56} />
+          <Image src="/visa.svg" alt="visa" width={57} height={19} />
+          <Image src="/paypal.svg" alt="paypal" width={88} height={25} />
+          <Image src="/master.svg" alt="master card" width={54} height={39} />
         </div>
         <div className="flex gap-5 items-center">
-          <Image src="/stripe.svg" alt="stripe" width={24} height={24} />
-          <Image src="/apple.svg" alt="apple pay" width={24} height={24} />
-          <Image src="/amzon.svg" alt="amazon" width={24} height={24} />
+          <Image src="/stripe.svg" alt="stripe" width={76} height={37} />
+          <Image src="/apple.svg" alt="apple pay" width={66} height={27} />
+          <Image src="/amzon.svg" alt="amazon" width={70} height={21} />
         </div>
       </div>
 
@@ -95,10 +95,10 @@ function Footer() {
           </ul>
 
           <div className="flex gap-5">
-            <Image src="/facebook.svg" alt="facebook" width={24} height={24} />
-            <Image src="/insta.svg" alt="instagram" width={24} height={24} />
-            <Image src="/x.svg" alt="twitter" width={24} height={24} />
-            <Image src="/linked.svg" alt="linkedIn" width={24} height={24} />
+            <Image src="/facebook.svg" alt="facebook" width={20} height={21} />
+            <Image src="/insta.svg" alt="instagram" width={18} height={21} />
+            <Image src="/x.svg" alt="twitter" width={18} height={21} />
+            <Image src="/linked.svg" alt="linkedIn" width={18} height={21} />
           </div>
         </div>
         <div className="border-b w-full"></div>
