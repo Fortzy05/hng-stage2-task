@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useCart } from "../context/CartContext";
 import DynamicTime from "@/components/DynamicTime";
 
-
 const CheckoutPage = () => {
   const { cartItems, calculateTotal } = useCart();
 
@@ -14,7 +13,7 @@ const CheckoutPage = () => {
     <div className="w-full md:px-[5rem] py-0 px-0 md:py-[2rem] bg-[#f4f4f479]">
       <div className="flex justify-between md:px-0 px-[2rem] py-[2rem]">
         <Link href="/">
-          <img src="/logo.svg" alt="logo" />
+          <Image src="/logo.svg" alt="logo" width={50} height={50} />
         </Link>
         <div className="flex items-center gap-1">
           <Image src="/cart.svg" alt="cart" width={30} height={30} />
@@ -128,7 +127,7 @@ const CheckoutPage = () => {
               </div>
             </div>
             <div className="px-10 pb-7 flex flex-col gap-5">
-              <DynamicTime/>
+              <DynamicTime />
               <span className="text-[#0F172A] md:text-base text-xs font-semibold">
                 Free
               </span>
@@ -162,7 +161,7 @@ const CheckoutPage = () => {
               </div>
             </div>
             <h1 className="text-[#0F172A] mb-[2rem] md:text-base text-xs">
-              By Clicking &quot;Confirm Payment&quot; I agree to the companies
+              By Clicking &quot;Confirm Payment&quot; I agree to the company's
               term of services.
             </h1>
             <div className="mt-[2rem] flex justify-between text-[#0F172A] md:text-base text-xs">
