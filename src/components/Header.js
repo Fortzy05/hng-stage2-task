@@ -1,24 +1,15 @@
-// import Link from "next/link";
-// import { useState, useEffect } from "react";
-// import Image from "next/image";
-// import { usePathname } from "next/navigation";
+"use client"
 
-// const Header = () => {
-//   const pathname = usePathname();
-//   const excludedRoutes = ["/cart-page", "/checkout"];
-//   const showHeader = !excludedRoutes.includes(pathname);
 
- import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-
-  useEffect(() => {
-    const routesWithoutHeader = ["/cartpage", "/checkoutpage"];
-    setIsHeaderVisible(!routesWithoutHeader.includes(window.location.pathname));
-  }, []);
+  const pathname = usePathname();
+  const excludedRoutes = ["/cart-page", "/checkout"];
+  const showHeader = !excludedRoutes.includes(pathname.pathname);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => {
@@ -26,9 +17,9 @@ const Header = () => {
     closeOtherDropdowns("Brands");
   };
 
-  const [openModal, setModalOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const toggleModalOpen = () => {
-    setModalOpen(!openModal);
+    setOpenModal(!openModal);
     closeOtherDropdowns("Categories");
   };
 
@@ -41,7 +32,7 @@ const Header = () => {
             setIsModalOpen(false);
             break;
           case "Categories":
-            setModalOpen(false);
+            setOpenModal(false);
             break;
         }
       }
@@ -54,9 +45,9 @@ const Header = () => {
     closeDropdowns("Brands");
   };
 
-  const [openCat, setCat] = useState(false);
+  const [openCat, setOpenCat] = useState(false);
   const toggleCat = () => {
-    setCat(!openCat);
+    setOpenCat(!openCat);
     closeDropdowns("Categories");
   };
 
@@ -69,7 +60,7 @@ const Header = () => {
             setIsBrandOpen(false);
             break;
           case "Categories":
-            setCat(false);
+            setOpenCat(false);
             break;
         }
       }
@@ -84,9 +75,10 @@ const Header = () => {
     }
   }, [isBrandOpen, openCat]);
 
-  const [burger, setBurgerOpen] = useState(false);
-  const ModalOpen = () => {
-    setBurgerOpen(!burger);
+  const [burger, setBurger] = useState(false);
+  const toggleBurger = () => {
+    setBurger(!burger);
+  
   };
 
   useEffect(() => {
@@ -97,7 +89,7 @@ const Header = () => {
     }
   }, [isModalOpen, openModal, burger]);
 
-  if (!isHeaderVisible) {
+  if (!showHeader) {
     return null;
   }
 
@@ -108,7 +100,9 @@ const Header = () => {
     >
       <div className="flex gap-10 items-center text-[16px]">
         <Link href="/">
-          <Image src="/logo.svg" alt="logo" width={150} height={150} />
+         
+            <Image width={150} height={150} src="/logo.svg" alt="logo" />
+          
         </Link>
 
         <div
@@ -118,10 +112,10 @@ const Header = () => {
           <h1>Brands</h1>
           <span>
             <Image
+              width={25}
+              height={25}
               src="/down_arrow.svg"
-              alt="arrow"
-              width={16}
-              height={16}
+              alt="this is an arrow facing downwards"
             />
           </span>
         </div>
@@ -135,10 +129,10 @@ const Header = () => {
           <h3>Categories</h3>
           <span>
             <Image
+              width={25}
+              height={25}
               src="/down_arrow.svg"
-              alt="arrow"
-              width={16}
-              height={16}
+              alt="this is an arrow facing downwards"
             />
           </span>
         </div>
@@ -148,17 +142,18 @@ const Header = () => {
 
       <div className="md:border md:w-[8rem] rounded-lg py-1 px-4 border-[#E2E8F0] bg-transparent flex items-center gap-3">
         <Image
+          width={25}
+          height={25}
           src="/search.svg"
           alt="search icon"
-          width={20}
-          height={20}
+          className="md:w-5 w-8"
         />
         <input
           type="text"
           placeholder="Search"
           className="w-full outline-none input-placeholder md:block hidden"
         />
-        <div className="md:hidden block" onClick={ModalOpen}>
+        <div className="md:hidden block" onClick={toggleBurger}>
           <div className="border w-8 border-black rounded-full bg-black py-[.5px]"></div>
           <div className="border w-6 border-black py-[.5px] bg-black rounded-full my-1 ml-2"></div>
           <div className="border w-7 border-black bg-black rounded-full py-[.5px] my-1 ml-1"></div>
@@ -169,41 +164,41 @@ const Header = () => {
         <>
           <div
             className="fixed inset-0 bg-black opacity-50 z-10  mt-[5rem] md:hidden block"
-            onClick={ModalOpen}
+            onClick={toggleBurger}
           ></div>
           <div className="fixed top-0 left-0 mx-[14rem] my-[6rem] px-[2rem] py-[1rem] w-[18rem] transform -translate-x-1/2 z-20 bg-white rounded-xl shadow-lg overflow-hidden md:hidden block">
             <div className="font-medium text-end flex flex-col gap-2">
               <div
-                className="flex items-center pl-[6rem] justify-end gap-1 hover:text-[#AC702F]"
+                className="flex items-center pl-[6rem] justify-end gap-1 hover:text-[#AC702F] "
                 onClick={toggleBrand}
               >
                 <h1>Brands</h1>
                 <span>
                   <Image
+                    width={25}
+                    height={25}
                     src="/down_arrow.svg"
-                    alt="arrow"
-                    width={16}
-                    height={16}
+                    alt="this is an arrow facing downwards"
                   />
                 </span>
               </div>
-              <h2 className="hover:text-[#AC702F]">Inspiration</h2>
+              <h2 className="hover:text-[#AC702F] ">Inspiration</h2>
               <div
-                className="flex items-center justify-end gap-1 hover:text-[#AC702F] pl-[6rem]"
+                className="flex items-center justify-end gap-1 hover:text-[#AC702F] pl-[6rem] "
                 onClick={toggleCat}
               >
-                <h3 className="hover:text-[#AC702F]">Categories</h3>
+                <h3 className="hover:text-[#AC702F] ">Categories</h3>
                 <Image
+                  width={25}
+                  height={25}
                   src="/down_arrow.svg"
                   alt="arrow"
-                  width={16}
-                  height={16}
                 />
               </div>
-              <h4 className="hover:text-[#AC702F]">Sales</h4>
-              <h5 className="hover:text-[#AC702F]">Terms of Service</h5>
-              <h6 className="hover:text-[#AC702F]">Privacy</h6>
-              <p className="hover:text-[#AC702F]">Contact Us</p>
+              <h4 className="hover:text-[#AC702F] ">Sales</h4>
+              <h5 className="hover:text-[#AC702F] ">Terms of Service</h5>
+              <h6 className="hover:text-[#AC702F] ">Privacy</h6>
+              <p className="hover:text-[#AC702F] ">Contact Us</p>
             </div>
           </div>
         </>
@@ -274,7 +269,7 @@ const Header = () => {
                   <li>Radley</li>
                   <li>Swarovski</li>
                   <li>Ted Baker</li>
-                  <li>Tory Burch</li>
+                  <li>Tory Bunch</li>
                 </ul>
               </div>
             </div>
@@ -297,7 +292,6 @@ const Header = () => {
           </div>
         </>
       )}
-
       {isModalOpen && (
         <>
           <div
@@ -363,7 +357,7 @@ const Header = () => {
                   <li>Radley</li>
                   <li>Swarovski</li>
                   <li>Ted Baker</li>
-                  <li>Tory Burch</li>
+                  <li>Tory Bunch</li>
                 </ul>
               </div>
             </div>

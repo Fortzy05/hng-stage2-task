@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,7 +14,7 @@ const CartPage = () => {
     calculateTotal,
     clearCart,
   } = useCart();
-
+console.log(cartItems);
   return (
     <div className="w-full md:px-[5rem] bg-[#f4f4f479] overflow-hidden">
       <div className="flex justify-between md:px-0 px-[2rem] py-[2rem]">
@@ -40,22 +39,19 @@ const CartPage = () => {
               className="py-[2rem] flex gap-[2rem] border-b border-[#94A3B8]"
             >
               <Image
-                src={
-                  item.photos?.[0]?.url
-                    ? `https://app.timbu.cloud/${item.photos[0].url}`
-                    : "/rolex.svg"
-                }
+                src={`/${item.photos?.[0]?.url}` || "/certinaa.jpg"}
                 alt={item.name}
-                width={80}
-                height={80}
+                width={200}
+                height={200}
                 className="border border-[#AC702F] rounded-md bg-transparent"
               />
+
               <div className="flex flex-col gap-5">
                 <h1 className="md:text-2xl text-sm font-semibold">
                   {item.name}
                 </h1>
                 <h2 className="md:text-2xl text-sm font-semibold">
-                  N{item.current_price?.[0]?.NGN?.[0] || "Price not available"}
+                  {item.current_price?.[0]?.NGN?.[0] || "Price not available"}
                 </h2>
                 <div className="md:text-base text-xs">
                   <button className="border border-[#AC702F] px-1 rounded-2xl flex items-center">

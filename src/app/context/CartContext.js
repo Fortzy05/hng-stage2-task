@@ -1,10 +1,24 @@
 "use client"
-import { createContext, useContext, useState } from "react";
+
+import { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    if (typeof window !== "undefined") {
+      const storedCartItems = localStorage.getItem("cartItems");
+      return storedCartItems ? JSON.parse(storedCartItems) : [];
+    } else {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
 
   const addToCart = (product) => {
     setCartItems((prevItems) => [...prevItems, { ...product, quantity: 1 }]);
@@ -33,13 +47,17 @@ export function CartProvider({ children }) {
       )
     );
   };
+const calculateTotal = () => {
+  return cartItems.reduce((total, item) => {
+    
+    if (item && item.current_price && item.current_price[0]?.NGN) {
+      return total + item.current_price[0].NGN[0] * item.quantity;
+    } else {
+      return total; 
+    }
+  }, 0);
+};
 
-  const calculateTotal = () => {
-    return cartItems.reduce(
-      (total, item) => total + item.current_price[0].NGN[0] * item.quantity,
-      0
-    );
-  };
 
   const clearCart = () => {
     setCartItems([]);
