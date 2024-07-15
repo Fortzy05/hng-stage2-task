@@ -161,9 +161,10 @@ const CheckoutPage = () => {
               </div>
             </div>
             <h1 className="text-[#0F172A] mb-[2rem] md:text-base text-xs">
-              By Clicking &quot;Confirm Payment&quot; I agree to the company
-              term of services.
+              By Clicking &quot;Confirm Payment&quot; I agree to the
+              company&apos;s term of services.
             </h1>
+
             <div className="mt-[2rem] flex justify-between text-[#0F172A] md:text-base text-xs">
               <h2>Discount</h2>
               <span>N00.00</span>
