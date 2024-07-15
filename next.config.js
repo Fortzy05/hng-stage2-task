@@ -4,11 +4,11 @@ module.exports = {
       {
         source: "/api/:path*",
         destination:
-          "https://timbu-get-all-products.reavdev.workers.dev/:path*", 
+          "https://timbu-get-all-products.reavdev.workers.dev/:path*",
       },
     ];
   },
   images: {
-    domains: ["app.timbu.cloud"], 
+    domains: ["timbu-get-all-products.reavdev.workers.dev", "api.timbu.cloud"],
   },
 };

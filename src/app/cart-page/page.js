@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -14,7 +14,9 @@ const CartPage = () => {
     calculateTotal,
     clearCart,
   } = useCart();
-console.log(cartItems);
+
+  console.log(cartItems);
+
   return (
     <div className="w-full md:px-[5rem] bg-[#f4f4f479] overflow-hidden">
       <div className="flex justify-between md:px-0 px-[2rem] py-[2rem]">
@@ -38,8 +40,12 @@ console.log(cartItems);
               key={item.id}
               className="py-[2rem] flex gap-[2rem] border-b border-[#94A3B8]"
             >
-              <Image
-                src={`/${item.photos?.[0]?.url}` || "/certinaa.jpg"}
+              <img
+                src={
+                  item.photos?.[0]?.url
+                    ? `https://api.timbu.cloud/images/${item.photos[0].url}`
+                    : "/certinaa.jpg"
+                }
                 alt={item.name}
                 width={200}
                 height={200}
