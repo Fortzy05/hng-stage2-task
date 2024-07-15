@@ -6,9 +6,9 @@ function ShoppingCard({ product, addToCart }) {
   const productPrice =
     product.current_price?.[0]?.NGN?.[0] || "Price not available";
 
-  const productImage = product.photos?.[0]?.url
+  const productImage = product.photos?.length > 0
     ? `https://api.timbu.cloud/images/${product.photos[0]?.url}`
-    : "/public/casio.svg";
+    : "/casio.svg";
 
   return (
     <div className="md:w-[292px] md:h-[563px] border border-[#AC702F] py-2 px-4 rounded-lg flex flex-col justify-between">

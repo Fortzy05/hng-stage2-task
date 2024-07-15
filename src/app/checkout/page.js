@@ -32,15 +32,15 @@ const CheckoutPage = () => {
                 key={item.id}
                 className="py-[2rem] flex gap-[2rem] border-b border-[#94A3B8]"
               >
-                <Image
+                <img
                   src={
                     item.photos?.[0]?.url
-                      ? `/${item.photos[0].url}`
-                      : "/placeholder.jpg"
+                      ? `https://api.timbu.cloud/images/${item.photos[0].url}`
+                      : "/certinaa.jpg"
                   }
                   alt={item.name}
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
                   className="border border-[#AC702F] rounded-md bg-transparent"
                 />
                 <div className="flex flex-col gap-5">
