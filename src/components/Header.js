@@ -1,192 +1,187 @@
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
+// import Link from "next/link";
+// import { useState, useEffect } from "react";
+// import Image from "next/image";
+// import { usePathname } from "next/navigation";
+
+// const Header = () => {
+//   const pathname = usePathname();
+//   const excludedRoutes = ["/cart-page", "/checkout"];
+//   const showHeader = !excludedRoutes.includes(pathname);
+
+ import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 const Header = () => {
-  const pathname = usePathname();
-  const excludedRoutes = ["/cartpage", "/checkoutpage"];
-  const showHeader = !excludedRoutes.includes(pathname);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
-  const [dropdownState, setDropdownState] = useState({
-    brands: false,
-    categories: false,
-  });
-  const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    const routesWithoutHeader = ["/cartpage", "/checkoutpage"];
+    setIsHeaderVisible(!routesWithoutHeader.includes(window.location.pathname));
+  }, []);
 
-  const [showBrandsDropdown, setShowBrandsDropdown] = useState(false);
-  const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
-
-  const toggleBrandsDropdown = () => {
-    setShowBrandsDropdown(!showBrandsDropdown);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+    closeOtherDropdowns("Brands");
   };
 
-  const toggleCategoriesDropdown = () => {
-    setShowCategoriesDropdown(!showCategoriesDropdown);
+  const [openModal, setModalOpen] = useState(false);
+  const toggleModalOpen = () => {
+    setModalOpen(!openModal);
+    closeOtherDropdowns("Categories");
   };
 
-  const toggleDropdown = (type) => {
-    setDropdownState((prevState) => ({
-      ...prevState,
-      [type]: !prevState[type],
-    }));
+  const closeOtherDropdowns = (currentDropdown) => {
+    const dropdowns = ["Brands", "Categories"];
+    dropdowns.forEach((dropdown) => {
+      if (dropdown !== currentDropdown) {
+        switch (dropdown) {
+          case "Brands":
+            setIsModalOpen(false);
+            break;
+          case "Categories":
+            setModalOpen(false);
+            break;
+        }
+      }
+    });
   };
 
-  const closeDropdowns = () => {
-    setDropdownState({ brands: false, categories: false });
+  const [isBrandOpen, setIsBrandOpen] = useState(false);
+  const toggleBrand = () => {
+    setIsBrandOpen(!isBrandOpen);
+    closeDropdowns("Brands");
+  };
+
+  const [openCat, setCat] = useState(false);
+  const toggleCat = () => {
+    setCat(!openCat);
+    closeDropdowns("Categories");
+  };
+
+  const closeDropdowns = (currentDropdown) => {
+    const dropdowns = ["Brands", "Categories"];
+    dropdowns.forEach((dropdown) => {
+      if (dropdown !== currentDropdown) {
+        switch (dropdown) {
+          case "Brands":
+            setIsBrandOpen(false);
+            break;
+          case "Categories":
+            setCat(false);
+            break;
+        }
+      }
+    });
   };
 
   useEffect(() => {
-    if (dropdownState.brands || dropdownState.categories || menuOpen) {
-      document.body.classList.add("overlay-open");
+    if (isBrandOpen || openCat) {
+      document.body.classList.add("modal-open");
     } else {
-      document.body.classList.remove("overlay-open");
+      document.body.classList.remove("modal-open");
     }
-  }, [dropdownState, menuOpen]);
+  }, [isBrandOpen, openCat]);
 
-  if (!showHeader) {
+  const [burger, setBurgerOpen] = useState(false);
+  const ModalOpen = () => {
+    setBurgerOpen(!burger);
+  };
+
+  useEffect(() => {
+    if (isModalOpen || openModal || burger) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+  }, [isModalOpen, openModal, burger]);
+
+  if (!isHeaderVisible) {
     return null;
   }
 
   return (
-    <div className="relative w-full mx-auto bg-[#f4f4f479] flex justify-between items-center md:px-[5rem] px-[2rem] py-[2rem] gap-10 overflow-hidden cursor-pointer border-b border-[#f2f2f279]">
+    <div
+      id="products"
+      className="relative w-full mx-auto bg-[#f4f4f479] flex justify-between items-center md:px-[5rem] px-[2rem] py-[2rem] gap-10  overflow-hidden cursor-pointer border-b border-[#f2f2f279]"
+    >
       <div className="flex gap-10 items-center text-[16px]">
         <Link href="/">
-          <img src="/logo.svg" alt="logo" />
+          <Image src="/logo.svg" alt="logo" width={150} height={150} />
         </Link>
 
-        <ul className="flex gap-[60px]">
-          <li
-            className="md:flex gap-1 items-center hidden relative cursor-pointer"
-            onClick={toggleBrandsDropdown}
-          >
-            <span className="hover:text-[#AC702F]">Brands</span>
-            <img src="/down_arrow.svg" alt="arrow down" />
-            <span
-              className={`absolute w-[900px] h-[480px] gap-[134px] flex top-8 left-0 right-0 bg-white shadow-md rounded-md py-2 px-10  z-10 ${
-                showBrandsDropdown ? "block" : "hidden"
-              }`}
-            >
-              <div className="mb-3">
-                <h3 className="font-semibold mb-2">Luxury Brands</h3>
-                <ul className="list-disc">
-                  <li>Montblanc</li>
-                  <li>Baume & Mercier</li>
-                  <li>Oris</li>
-                  <li>Rado</li>
-                  <li>Fortis</li>
-                  <li>Raymond Weil</li>
-                  <li>Roamer</li>
-                  <li>Richard Millie</li>
-                  <li>Hauer</li>
-                  <li>Seiko</li>
-                  <li>Tissot</li>
-                  <li>Maurice Lacroix</li>
-                  <li>Lorus</li>
-                  <li>Timex</li>
-                  <li>Certina</li>
-                  <li>Rolex</li>
-                  <li>Balmain</li>
-                </ul>
-              </div>
-              <div className="mb-3">
-                <h3 className="font-semibold mb-2">Designer Watch Brands</h3>
-                <ul className="list-disc">
-                  <li>Vivienne Westwood</li>
-                  <li>Versace</li>
-                  <li>Casio</li>
-                  <li>Diesel</li>
-                  <li>Emporio Armani</li>
-                  <li>Ligure</li>
-                  <li>Fossil</li>
-                  <li>Guess</li>
-                  <li>Maserati</li>
-                  <li>Rotary</li>
-                  <li>Sekonda</li>
-                  <li>Swatch</li>
-                  <li>Mondaine</li>
-                  <li>Icewatch</li>
-                  <li>Calypso</li>
-                  <li>Garonne</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Luxury Jewellery</h3>
-                <ul className="list-disc">
-                  <li>Ambush</li>
-                  <li>Balenciaga</li>
-                  <li>Common Lines</li>
-                  <li>Dsquared2</li>
-                  <li>Juicy Couture</li>
-                  <li>MICHAEL Michael Kors</li>
-                  <li>Missoma</li>
-                  <li>Olivia Burton</li>
-                  <li>Radley</li>
-                  <li>Swarovski</li>
-                  <li>Ted Baker</li>
-                  <li>Tory Burch</li>
-                </ul>
-              </div>
-            </span>
-          </li>
-        </ul>
+        <div
+          className="md:flex items-center gap-1 hover:text-[#AC702F] hidden"
+          onClick={toggleModal}
+        >
+          <h1>Brands</h1>
+          <span>
+            <Image
+              src="/down_arrow.svg"
+              alt="arrow"
+              width={16}
+              height={16}
+            />
+          </span>
+        </div>
 
         <h2 className="hover:text-[#AC702F] md:block hidden">Inspiration</h2>
 
-        <li
-          className="md:flex hidden gap-1 items-center relative cursor-pointer"
-          onClick={toggleCategoriesDropdown}
+        <div
+          className="md:flex items-center gap-1 hover:text-[#AC702F] hidden"
+          onClick={toggleModalOpen}
         >
-          <span className="hover:text-[#AC702F]">Categories</span>
-          <img src="/down_arrow.svg" alt="arrow down" />
-          <span
-            className={`absolute w-[300px] h-[100px] gap-[134px] flex top-full left-0 right-0 bg-white shadow-md rounded-md py-2 px-10 mt-1 z-10 ${
-              showCategoriesDropdown ? "block" : "hidden"
-            }`}
-          >
-            <div className="mb-3">
-              <ul className="flex flex-col justify-center items-center space-y-2">
-                <li>Luxury Brands</li>
-                <li>Designer Watch Brands</li>
-                <li>Luxury Jewellery</li>
-              </ul>
-            </div>
+          <h3>Categories</h3>
+          <span>
+            <Image
+              src="/down_arrow.svg"
+              alt="arrow"
+              width={16}
+              height={16}
+            />
           </span>
-        </li>
+        </div>
+
         <h4 className="hover:text-[#AC702F] md:block hidden">Sale</h4>
       </div>
 
       <div className="md:border md:w-[8rem] rounded-lg py-1 px-4 border-[#E2E8F0] bg-transparent flex items-center gap-3">
-        <img src="/search.svg" alt="search icon" className="md:w-5 w-8" />
+        <Image
+          src="/search.svg"
+          alt="search icon"
+          width={20}
+          height={20}
+        />
         <input
           type="text"
           placeholder="Search"
           className="w-full outline-none input-placeholder md:block hidden"
         />
-        <div className="md:hidden block" onClick={() => setMenuOpen(!menuOpen)}>
+        <div className="md:hidden block" onClick={ModalOpen}>
           <div className="border w-8 border-black rounded-full bg-black py-[.5px]"></div>
           <div className="border w-6 border-black py-[.5px] bg-black rounded-full my-1 ml-2"></div>
           <div className="border w-7 border-black bg-black rounded-full py-[.5px] my-1 ml-1"></div>
         </div>
       </div>
 
-      {menuOpen && (
+      {burger && (
         <>
           <div
-            className="fixed inset-0 bg-black opacity-50 z-10 mt-[5rem] md:hidden block"
-            onClick={() => setMenuOpen(false)}
+            className="fixed inset-0 bg-black opacity-50 z-10  mt-[5rem] md:hidden block"
+            onClick={ModalOpen}
           ></div>
           <div className="fixed top-0 left-0 mx-[14rem] my-[6rem] px-[2rem] py-[1rem] w-[18rem] transform -translate-x-1/2 z-20 bg-white rounded-xl shadow-lg overflow-hidden md:hidden block">
             <div className="font-medium text-end flex flex-col gap-2">
               <div
                 className="flex items-center pl-[6rem] justify-end gap-1 hover:text-[#AC702F]"
-                onClick={() => toggleDropdown("brands")}
+                onClick={toggleBrand}
               >
                 <h1>Brands</h1>
                 <span>
                   <Image
                     src="/down_arrow.svg"
-                    alt="arrow down"
+                    alt="arrow"
                     width={16}
                     height={16}
                   />
@@ -195,12 +190,12 @@ const Header = () => {
               <h2 className="hover:text-[#AC702F]">Inspiration</h2>
               <div
                 className="flex items-center justify-end gap-1 hover:text-[#AC702F] pl-[6rem]"
-                onClick={() => toggleDropdown("categories")}
+                onClick={toggleCat}
               >
-                <h3>Categories</h3>
+                <h3 className="hover:text-[#AC702F]">Categories</h3>
                 <Image
                   src="/down_arrow.svg"
-                  alt="arrow down"
+                  alt="arrow"
                   width={16}
                   height={16}
                 />
@@ -214,11 +209,11 @@ const Header = () => {
         </>
       )}
 
-      {dropdownState.brands && (
+      {isBrandOpen && (
         <>
           <div
             className="fixed inset-0 bg-black opacity-50 z-10 mt-[5rem] md:hidden block"
-            onClick={closeDropdowns}
+            onClick={toggleBrand}
           ></div>
           <div className="fixed top-0 left-0 mx-[14rem] my-[9.2rem] px-[1rem] py-[.5rem] w-[18rem] transform -translate-x-1/2 z-20 bg-white rounded-xl shadow-lg overflow-hidden md:hidden block">
             <div className="py-3 px-6 gap-12">
@@ -279,7 +274,7 @@ const Header = () => {
                   <li>Radley</li>
                   <li>Swarovski</li>
                   <li>Ted Baker</li>
-                  <li>Tory Bunch</li>
+                  <li>Tory Burch</li>
                 </ul>
               </div>
             </div>
@@ -287,13 +282,102 @@ const Header = () => {
         </>
       )}
 
-      {dropdownState.categories && (
+      {openCat && (
         <>
           <div
-            className="fixed inset-0 bg-black opacity-50 z-10 mt-[5rem] md:hidden block"
-            onClick={closeDropdowns}
+            className="fixed inset-0 bg-black opacity-50 z-10  mt-[5rem] md:hidden block"
+            onClick={toggleCat}
           ></div>
           <div className="fixed top-0 left-0 mx-[14rem] my-[13rem] px-[1rem] py-[1rem] w-[17rem] transform -translate-x-1/2 z-20 bg-white rounded-xl shadow-lg overflow-hidden md:hidden block">
+            <div className="py-3 px-6 gap-12 font-semibold">
+              <h1>Luxury Brands</h1>
+              <h2>Designer Watch Brands</h2>
+              <h3>Luxury Jewellery</h3>
+            </div>
+          </div>
+        </>
+      )}
+
+      {isModalOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-black opacity-50 z-10 mt-[5rem] md:block hidden"
+            onClick={toggleModal}
+          ></div>
+          <div className="fixed top-0 left-0 mx-[35rem] my-[6rem] px-[2rem] py-[2rem] w-[44rem] transform -translate-x-1/2 z-20 bg-white rounded-xl shadow-lg overflow-hidden md:block hidden">
+            <div className="py-3 px-6 flex gap-12">
+              <div className="text-[#0F172A]">
+                <h1 className="font-semibold">Luxury Brands</h1>
+                <ul className="list-disc px-6">
+                  <li>Montblanc</li>
+                  <li>Buame & Mercer</li>
+                  <li>Oris</li>
+                  <li>Rado</li>
+                  <li>Fortis</li>
+                  <li>Raymond Weil</li>
+                  <li>Roamer</li>
+                  <li>Richard Millie</li>
+                  <li>Hauer</li>
+                  <li>Seiko</li>
+                  <li>Tissot</li>
+                  <li>Maurice</li>
+                  <li>Lorus</li>
+                  <li>Timex</li>
+                  <li>Certina</li>
+                  <li>Rolex</li>
+                  <li>Balmain</li>
+                </ul>
+              </div>
+              <div className="text-[#0F172A]">
+                <h1 className="font-semibold">Designer Watch Brands</h1>
+                <ul className="list-disc px-6">
+                  <li>Vivienne Westwood</li>
+                  <li>Versace</li>
+                  <li>Casio</li>
+                  <li>Diesel</li>
+                  <li>Emporio Armani</li>
+                  <li>Ligure</li>
+                  <li>Fossil</li>
+                  <li>Guess</li>
+                  <li>Maserati</li>
+                  <li>Rotary</li>
+                  <li>Sekonda</li>
+                  <li>Swatch</li>
+                  <li>Mondaine</li>
+                  <li>Icewatch</li>
+                  <li>Calypso</li>
+                  <li>Garonne</li>
+                </ul>
+              </div>
+              <div className="text-[#0F172A]">
+                <h1 className="font-semibold">Luxury Jewellery</h1>
+                <ul className="list-disc px-6">
+                  <li>Ambush</li>
+                  <li>Balenciaga</li>
+                  <li>Common Lines</li>
+                  <li>Dsquared2</li>
+                  <li>Juicy Couture</li>
+                  <li>Michael Kors</li>
+                  <li>Missoma</li>
+                  <li>Olivia Burton</li>
+                  <li>Radley</li>
+                  <li>Swarovski</li>
+                  <li>Ted Baker</li>
+                  <li>Tory Burch</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {openModal && (
+        <>
+          <div
+            className="fixed inset-0 bg-black opacity-50 z-10  mt-[5rem] md:block hidden"
+            onClick={toggleModalOpen}
+          ></div>
+          <div className="fixed top-0 left-0 mx-[37rem] my-[6rem] px-[1rem] py-[1rem] w-[17rem] transform -translate-x-1/2 z-20 bg-white rounded-xl shadow-lg overflow-hidden md:block hidden">
             <div className="py-3 px-6 gap-12 font-semibold">
               <h1>Luxury Brands</h1>
               <h2>Designer Watch Brands</h2>

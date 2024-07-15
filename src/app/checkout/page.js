@@ -13,7 +13,7 @@ const CheckoutPage = () => {
     <div className="w-full md:px-[5rem] py-0 px-0 md:py-[2rem] bg-[#f4f4f479]">
       <div className="flex justify-between md:px-0 px-[2rem] py-[2rem]">
         <Link href="/">
-          <Image src="/logo.svg" alt="logo" width={50} height={50} />
+          <Image src="/logo.svg" alt="logo" width={150} height={150} />
         </Link>
         <div className="flex items-center gap-1">
           <Image src="/cart.svg" alt="cart" width={30} height={30} />
